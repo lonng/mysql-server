@@ -117,6 +117,7 @@ ADD_CUSTOM_COMMAND(
 ADD_DEFINITIONS(-DMYSQL_SERVER)
 ADD_SUBDIRECTORY(server_component)
 ADD_SUBDIRECTORY(protobuf)
+ADD_SUBDIRECTORY(parser)
 
 SET(DD_SOURCES
   dd/collection.cc
@@ -932,6 +933,7 @@ TARGET_LINK_LIBRARIES(sql_main ${MYSQLD_STATIC_PLUGIN_LIBS}
 # google::protobuf::io::CodedOutputStream::WriteVarint64ToArray
 # which may or may not be inlined.
 TARGET_LINK_LIBRARIES(sql_main ${PROTOBUF_LITE_LIBRARY})
+TARGET_LINK_LIBRARIES(sql_main ${PARSER_LIB_NAME})
 
 ADD_LIBRARY(sql_gis STATIC ${SQL_GIS_SOURCES})
 ADD_DEPENDENCIES(sql_gis GenServerSource)
